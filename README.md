@@ -134,3 +134,15 @@ test=/ehhh/hmtc/pahhh/hmsswd
 cat ${test//hhh\/hm/}
 cat ${test//hh??hm/}
 ```
+
+## Finding Google Maps API Key
+
+>1. Find the page on http://target.com where the google map is embedded .
+>2. View page source.
+>3. Got google map key.
+>4. Use https://github.com/ozguralp/gmapsapiscanner to exploit.
+
+**Observations:**
+* Another tools to find secrets (api keys, access tokens, JWT etc):
+    - [SecretFinder](https://github.com/m4ll0k/SecretFinder)
+    - [JSParser](https://github.com/nahamsec/JSParser)
