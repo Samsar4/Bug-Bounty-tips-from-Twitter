@@ -1,7 +1,9 @@
 # Bug Bounty Tips from Twitter
 This is a collection of Bug Bounty Tips collected from infosec professionals / bug hunters on twitter.
 
-* Also a [Curated list of Bug Bounty Writeups](https://github.com/devanshbatham/Awesome-Bugbounty-Writeups)
+### Another useful resources
+* [Curated list of Bug Bounty Writeups](https://github.com/devanshbatham/Awesome-Bugbounty-Writeups)
+* [Resources for Beginners](https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters)
 ***
 
 ## SMTP server takeover
