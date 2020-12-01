@@ -1,5 +1,5 @@
 # Bug Bounty Tips from Twitter
-This is a collection of Bug Bounty Tips collected from infosec professionals and bug hunters on Twitter.
+This is a collection of Bug Bounty Tips collected from security researchers / bug hunters on Twitter.
 
 ### Another useful resources
 * [Curated list of Bug Bounty Writeups](https://github.com/devanshbatham/Awesome-Bugbounty-Writeups)
