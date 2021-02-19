@@ -1,9 +1,7 @@
-# Bug Bounty Tips from Twitter
-This is a collection of Bug Bounty Tips collected from security researchers / bug hunters on Twitter.
+# Bug Bounty Tips 
 
-### Another useful resources
-* [Curated list of Bug Bounty Writeups](https://github.com/devanshbatham/Awesome-Bugbounty-Writeups)
-* [Resources for Beginners](https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters)
+ℹ️  This is a collection of Bug Bounty Tips collected from security researchers and bug hunters on Twitter.
+
 ***
 
 ## SMTP server takeover
@@ -352,6 +350,17 @@ inurl:gitlab "company"
 
 ***
 
+## Account Takeover - security question input
+
+```
+1. Request user password reset
+2. Enter any invalid security question answer
+    - Invalid answer => statusCode:2011
+3. Change response code to statusCode:2010
+4. Password change page appears and any account can be taken over
+```
+***
+
 ## Open Redirect params
 
 ```
@@ -407,3 +416,7 @@ inurl:gitlab "company"
 
 ***
 
+### Other useful resources:
+* [Curated list of Bug Bounty Writeups](https://github.com/devanshbatham/Awesome-Bugbounty-Writeups)
+* [Resources for Beginners](https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters)
+***
