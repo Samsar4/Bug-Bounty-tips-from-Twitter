@@ -1,6 +1,6 @@
 # Bug Bounty Tips 
 
-ℹ️  This is a collection of Bug Bounty Tips collected from security researchers and bug hunters on Twitter.
+- This is a collection of useful tips and tricks for bug bounty hunters collected from Twitter #BugBountyTip #BugBountyTips
 
 ***
 
@@ -419,4 +419,3 @@ inurl:gitlab "company"
 ### Other useful resources:
 * [Curated list of Bug Bounty Writeups](https://github.com/devanshbatham/Awesome-Bugbounty-Writeups)
 * [Resources for Beginners](https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters)
-***
